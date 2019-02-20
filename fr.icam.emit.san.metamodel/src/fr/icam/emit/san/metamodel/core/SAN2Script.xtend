@@ -10,10 +10,12 @@ class SAN2Script {
 	 * Entry point of model to Boogie transformation
 	 * */ 
 	def mapEObjects(EList<EObject> eobjects) '''	
-		
+		«FOR eobject: eobjects.filter(typeof(EObject))»		
+			«FOR sf : eobject.eClass.EAllStructuralFeatures»
+				«eobject.eGet(sf)»
+			«ENDFOR»
+		«ENDFOR»
 	'''
-
-	
 
 	
 }
