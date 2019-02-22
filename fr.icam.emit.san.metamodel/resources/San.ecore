@@ -37,7 +37,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Device" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instrument" lowerBound="1"
-        eType="#//Instrument" containment="true"/>
+        eType="#//Instrument"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//Argument" containment="true"/>
   </eClassifiers>
@@ -56,11 +56,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Binding" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="device" lowerBound="1"
-        eType="#//Device" containment="true"/>
+        eType="#//Device"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="measurand" lowerBound="1"
-        eType="#//Measurand" containment="true"/>
+        eType="#//Measurand"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
-        eType="#//Feature" containment="true"/>
+        eType="#//Feature"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Argument" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
@@ -87,13 +87,13 @@
     <eLiterals name="Input"/>
     <eLiterals name="Output" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="factor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//Mode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="measure" lowerBound="1"
-        eType="#//Measure" containment="true"/>
+        eType="#//Measure"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Event">
+  <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="register" lowerBound="1"
         eType="#//Binding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" upperBound="-1"

@@ -5,5 +5,40 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:San="http://San/1.0"
     xsi:schemaLocation="http://San/1.0 San.ecore"
-    uri="localhost" port="1883">
+    name="Infrastructure"
+    uri="localhost"
+    port="1883">
+  <instruments
+      name="BenchTimer1221">
+    <features
+        name="Duration"
+        factor="-3"
+        mode="Output"/>
+  </instruments>
+  <instruments
+      name="Thermistor">
+    <features
+        name="CurrentTemp"
+        mode="Output"
+        measure="//@measures.1"/>
+  </instruments>
+  <instruments
+      name="PeakTech6226">
+    <features
+        name="PowerConsumption"
+        mode="Output"
+        measure="//@measures.2"/>
+  </instruments>
+  <measures
+      name="Time"
+      unit="Seconds"
+      type="Integer"/>
+  <measures
+      name="Temperature"
+      unit="Celcius"
+      type="Float"/>
+  <measures
+      name="Power"
+      unit="Watts"
+      type="Float"/>
 </San:Network>
