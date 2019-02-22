@@ -1,0 +1,24 @@
+[comment encoding = UTF-8 /]
+[module generate('http://San/1.0')]
+
+
+[template public generateElement(aNetwork : Network)]
+[comment @main/]
+[file (aNetwork.name+'.sh', false, 'UTF-8')]
+# Broker to use: [aNetwork.uri/]:[aNetwork.port/]
+
+# Authentification to Emit
+
+# Generates the clients
+	[for (instrument : Instrument | aNetwork.instruments)]
+		[for (feature : Feature | instrument.features)]
+			[let topic : String = aNetwork.name+'/'+feature.name]
+java -jar emit-client.jar -s [aNetwork.uri/] -p [aNetwork.port/] -id [feature.name/] -t [topic/] [if (feature.mode.toString().equalsIgnoreCase('Input'))] --actuator [else]--sensor	[/if]
+curl -H "Accept: application/json" -X POST -d "id":"[feature.name/]","topic":"[topic/]" [aNetwork.uri/]:[aNetwork.port/]
+			[/let]						  
+		[/for]
+	[/for]
+ 
+[/file]
+
+[/template]
