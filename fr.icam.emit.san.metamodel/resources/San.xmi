@@ -11,8 +11,11 @@
   <processes
       name="Cooling">
     <events
-        name="SwitchCoolingDevice"
-        subscribe="//@bindings.0"/>
+        name="SwitchOnCoolingDevice"
+        subscribe="//@bindings.0 //@bindings.1 //@bindings.3 //@bindings.4"/>
+    <events
+        name="SwitchOffCoolingDevice"
+        subscribe="//@bindings.2"/>
   </processes>
   <devices name="PeakTechF1"
       instrument="//@instruments.2"/>
@@ -47,13 +50,12 @@
         measure="//@measures.2"/>
   </instruments>
   <measurands
-      name="BuildingA"/>
+      name="BuildingA"
+      measurands="//@measurands.1 //@measurands.2"/>
   <measurands
-      name="Floor1"
-      measurand="//@measurands.0"/>
+      name="Floor1"/>
   <measurands
-      name="Floor2"
-      measurand="//@measurands.1"/>
+      name="Floor2"/>
   <measures
       name="Time"
       unit="Seconds"

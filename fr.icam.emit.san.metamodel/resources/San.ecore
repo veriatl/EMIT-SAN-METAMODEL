@@ -48,7 +48,8 @@
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Measurand" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="measurand" eType="#//Measurand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measurands" upperBound="-1"
+        eType="#//Measurand"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Measure" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -95,7 +96,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subscribe" lowerBound="1"
-        eType="#//Binding"/>
+        upperBound="-1" eType="#//Binding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" upperBound="-1"
         eType="#//Device" containment="true"/>
   </eClassifiers>
