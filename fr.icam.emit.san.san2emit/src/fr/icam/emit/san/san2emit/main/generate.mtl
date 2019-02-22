@@ -5,16 +5,20 @@
 [template public generateElement(aNetwork : Network)]
 [comment @main/]
 [file (aNetwork.name+'.sh', false, 'UTF-8')]
+#!/bin/bash          
 # Broker to use: [aNetwork.uri/]:[aNetwork.port/]
 
 # Authentification to Emit
+
+COOKIE=`curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "j_username=emit&j_password=emit" http://localhost:8080/emit/j_security_check -c - | grep -oh "[[:alnum:]]\{20,\}*$"`
+echo "authentication to emit with cookie $COOKIE" 
 
 # Generates the clients
 	[for (instrument : Instrument | aNetwork.instruments)]
 		[for (feature : Feature | instrument.features)]
 			[let topic : String = aNetwork.name+'/'+feature.name]
 java -jar emit-client.jar -s [aNetwork.uri/] -p [aNetwork.port/] -id [feature.name/] -t [topic/] [if (feature.mode.toString().equalsIgnoreCase('Input'))] --actuator [else]--sensor	[/if]
-curl -H "Accept: application/json" -X POST -d "id":"[feature.name/]","topic":"[topic/]" [aNetwork.uri/]:[aNetwork.port/]
+curl -c "JSESSIONID=$COOKIE" -H "Accept: application/json" -X POST -d "id":"[feature.name/]","topic":"[topic/]" [aNetwork.uri/]:[aNetwork.port/]
 			[/let]						  
 		[/for]
 	[/for]
