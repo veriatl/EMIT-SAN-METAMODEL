@@ -8,12 +8,29 @@
     name="Infrastructure"
     uri="localhost"
     port="1883">
+  <processes
+      name="Cooling">
+    <events
+        name="SwitchCoolingDevice"
+        subscribe="//@bindings.0"/>
+  </processes>
+  <devices name="PeakTechF1"
+      instrument="//@instruments.2"/>
+  <devices name="PeakTechF2"
+      instrument="//@instruments.2"/>
+  <devices name="ThermistorB"
+      instrument="//@instruments.1"/>
+  <devices name="StopWatch1"
+      instrument="//@instruments.0"/>
+  <devices name="StopWatch2"
+      instrument="//@instruments.0"/>
   <instruments
       name="BenchTimer1221">
     <features
         name="Duration"
         factor="-3"
-        mode="Output"/>
+        mode="Output"
+        measure="//@measures.0"/>
   </instruments>
   <instruments
       name="Thermistor">
@@ -29,6 +46,14 @@
         mode="Output"
         measure="//@measures.2"/>
   </instruments>
+  <measurands
+      name="BuildingA"/>
+  <measurands
+      name="Floor1"
+      measurand="//@measurands.0"/>
+  <measurands
+      name="Floor2"
+      measurand="//@measurands.1"/>
   <measures
       name="Time"
       unit="Seconds"
@@ -41,4 +66,29 @@
       name="Power"
       unit="Watts"
       type="Float"/>
+  <bindings
+      name="b1"
+      device="//@devices.0"
+      measurand="//@measurands.1"
+      feature="//@instruments.2/@features.0"/>
+  <bindings
+      name="b2"
+      device="//@devices.1"
+      measurand="//@measurands.2"
+      feature="//@instruments.2/@features.0"/>
+  <bindings
+      name="b3"
+      device="//@devices.2"
+      measurand="//@measurands.0"
+      feature="//@instruments.1/@features.0"/>
+  <bindings
+      name="b4"
+      device="//@devices.3"
+      measurand="//@measurands.1"
+      feature="//@instruments.0/@features.0"/>
+  <bindings
+      name="b5"
+      device="//@devices.4"
+      measurand="//@measurands.2"
+      feature="//@instruments.0/@features.0"/>
 </San:Network>

@@ -94,7 +94,7 @@
         eType="#//Measure"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="register" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subscribe" lowerBound="1"
         eType="#//Binding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" upperBound="-1"
         eType="#//Device" containment="true"/>
