@@ -5,7 +5,10 @@
 [template public generateElement(aNetwork : Network)]
 [comment @main/]
 [file (aNetwork.name+'.sh', false, 'UTF-8')]
-#!/bin/bash          
+#!/bin/bash
+# Verifying that dependencies are installed.
+command -v newman >/dev/null 2>&1 || { echo >&2 "I require newman but it's not installed (npm install -g newman). Aborting. "; exit 1; }
+          
 # Broker to use: [aNetwork.uri/]:[aNetwork.port/]
 
 # Broker creation on Emit
