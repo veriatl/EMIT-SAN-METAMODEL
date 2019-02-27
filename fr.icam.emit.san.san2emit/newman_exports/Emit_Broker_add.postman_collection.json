@@ -1,0 +1,125 @@
+{	"info":
+	{
+		"_postman_id": "3e6e1df6-4aba-45e8-b2cd-9e6b5992cf7f",
+		"name": "Emit Broker add",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://app.icam.fr/emit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://app.icam.fr/emit",
+					"protocol": "http",
+					"host": [
+						"app",
+						"icam",
+						"fr"
+					],
+					"path": [
+						"emit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://app.icam.fr/emit/j_security_check",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "j_username",
+							"value": "admin@emit.icam.fr",
+							"type": "text"
+						},
+						{
+							"key": "j_password",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://app.icam.fr/emit/j_security_check",
+					"protocol": "http",
+					"host": [
+						"app",
+						"icam",
+						"fr"
+					],
+					"path": [
+						"emit",
+						"j_security_check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://app.icam.fr/emit/brokers/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Origin",
+						"value": "http://app.icam.fr",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "tmp",
+							"type": "text"
+						},
+						{
+							"key": "uri",
+							"value": "tcp://1.1.1.1:1883",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://app.icam.fr/emit/brokers/create",
+					"protocol": "http",
+					"host": [
+						"app",
+						"icam",
+						"fr"
+					],
+					"path": [
+						"emit",
+						"brokers",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
