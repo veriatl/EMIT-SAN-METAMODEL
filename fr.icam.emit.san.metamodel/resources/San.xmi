@@ -6,7 +6,7 @@
     xmlns:San="http://San/1.0"
     xsi:schemaLocation="http://San/1.0 San.ecore"
     name="Infrastructure"
-    uri="localhost"
+    uri="tcp://app.icam.fr"
     port="1883">
   <processes
       name="Cooling">

@@ -8,21 +8,29 @@
 #!/bin/bash          
 # Broker to use: [aNetwork.uri/]:[aNetwork.port/]
 
-# Authentification to Emit
-
-COOKIE=`curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "j_username=emit&j_password=emit" http://localhost:8080/emit/j_security_check -c - | grep -oh "[[:alnum:]]\{20,\}*$"`
-echo "authentication to emit with cookie $COOKIE" 
+# Broker creation on Emit
+cat newman_exports/Emit_Broker_add.postman_collection.json \
+| jq '.item['['/]2[']'/].request.body.urlencoded['['/]0[']'/].value = "[aNetwork.name/]"' \
+| jq '.item['['/]2[']'/].request.body.urlencoded['['/]1[']'/].value = "[aNetwork.uri/]"' \
+> create_broker.json
+newman run create_broker.json
+rm create_broker.json
 
 # Generates the clients
 	[for (instrument : Instrument | aNetwork.instruments)]
 		[for (feature : Feature | instrument.features)]
 			[let topic : String = aNetwork.name+'/'+feature.name]
-java -jar emit-client.jar -s [aNetwork.uri/] -p [aNetwork.port/] -id [feature.name/] -t [topic/] [if (feature.mode.toString().equalsIgnoreCase('Input'))] --actuator [else]--sensor	[/if]
-curl -c "JSESSIONID=$COOKIE" -H "Accept: application/json" -X POST -d "id":"[feature.name/]","topic":"[topic/]" [aNetwork.uri/]:[aNetwork.port/]
+#java -jar emit-client.jar -s [aNetwork.uri/] -p [aNetwork.port/] -id [feature.name/] -t [topic/] [if (feature.mode.toString().equalsIgnoreCase('Input'))] --actuator [else]--sensor	[/if]
+cat newman_exports/Emit_Client_add.postman_collection.json \
+| jq '.item['['/]2[']'/].request.body.urlencoded['['/]0[']'/].value = "[feature.name/]"' \
+| jq '.item['['/]2[']'/].request.body.urlencoded['['/]1[']'/].value = "[aNetwork.uri/]"' \
+| jq '.item['['/]2[']'/].request.body.urlencoded['['/]2[']'/].value = "true"' \
+> create_client.json
+newman run create_client.json
 			[/let]						  
 		[/for]
 	[/for]
- 
+rm create_client.json
 [/file]
 
 [/template]
