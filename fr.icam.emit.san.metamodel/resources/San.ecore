@@ -97,6 +97,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subscribe" lowerBound="1"
         eType="#//Binding"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operands" upperBound="-1"
-        eType="#//Device" containment="true"/>
+        eType="#//Device"/>
   </eClassifiers>
 </ecore:EPackage>
